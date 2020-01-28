@@ -2,31 +2,50 @@ const objectInfoLink = 'http://134.209.138.34/item';
 const app = document.querySelector('#app');
 const url = new URL(window.location.href);
 const id = url.searchParams.get('id');
-
+console.log(`${objectInfoLink}/${id}#photo0`)
 const objectInfo = fetch(`${objectInfoLink}/${id}`)
   .then(response => response.json())
   .then(array => array[0])
   .then(object => {
-    const photos = object.images.map(image => {
-      return `<img src='${image}' alt=''>`
+    const previews = object.images.map((image, i) => {
+      return `<a href='#photo${i}' class='preview__link'><img src='${image}' class='preview__image' alt=''></a>`
+    }).join('');
+
+    const photos = object.images.map((image,i) => {
+      return `
+        <div class='photo-block' id='photo${i}'>
+          <a class="gallery__link-prew" href='#photo${i-1}'>Предыдущая</a>
+          <img src='${image}' class='gallery__image' alt=''>
+          <a class="gallery__link-next" href='#photo${i+1}'>Следующая</a>
+        </div>
+        `
     }).join('');
 
     return `
-      <p>ID: ${object.id}</p>
-      <h3>${object.title}</h3>
-      <p>${object.price}</p>
-      <address>${object.address}</address>
-      <div>${photos}</div>
+      <div class='advert-info'>
+        <p class='advert-id'>ID: ${object.id}</p>
+        <h3 class='advert-title'>${object.title}</h3>
+        <p class='advert-price'>${object.price}</p>
+        <address>${object.address}</address>
+        <div class='previews'>${previews}</div>
+      </div>
+      <div class='gallery'> ${photos}</div>
     `;
   })
   .then( advert => {
+    const fragment = document.createDocumentFragment();
     const objectInfo = document.createElement('div');
+    objectInfo.classList.add('advert');
     objectInfo.innerHTML = advert;
-    
     app.appendChild(objectInfo);
+
+    targetElement = document.querySelector('.photo-block');
+    console.log(targetElement);
+    targetElement.setAttribute('target', 'target');
 
   })
   .catch(err => console.error('Что-то пошло не так'));
+
 
 
 // [{
@@ -38,3 +57,4 @@ const objectInfo = fetch(`${objectInfoLink}/${id}`)
 //   "sellerName":"Анна",
 //   "images":["http://134.209.138.34/images/large/6329074398.jpg","http://134.209.138.34/images/large/6329074586.jpg","http://134.209.138.34/images/large/6329075095.jpg","http://134.209.138.34/images/large/6329075174.jpg"]
 // }]
+

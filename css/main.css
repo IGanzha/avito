@@ -1,0 +1,46 @@
+.estate {
+  max-width: 1200px;
+  padding: 0 10px;
+  margin: 50px auto;
+}
+
+.estate__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.estate__item {
+  display: flex;
+  align-items: center;
+}
+
+.estate__id {
+  width: 150px;
+  padding: 5px;
+}
+
+.estate__price {
+  width: 150px;
+  padding: 5px;
+  margin: 0;
+}
+
+.estate__title,
+.estate__address {
+  flex-grow: 1;
+  padding: 5px;
+  margin: 0;
+}
+
+.estate__img {
+  width: 240px;
+  padding: 5px;
+}
+
+.estate__img img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  padding: 5px;
+}
