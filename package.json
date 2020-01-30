@@ -1,0 +1,31 @@
+{
+  "name": "avito-test",
+  "private": true,
+  "description": "Тестовое задание",
+  "devDependencies": {
+    "autoprefixer": "^9.7.4",
+    "browser-sync": "^2.26.7",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^8.0.0"
+  },
+  "scripts": {
+    "build": "gulp css",
+    "start": "gulp start"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "IE 11",
+    "Firefox ESR"
+  ],
+  "engines": {
+    "node": "8.15"
+  },
+  "editorconfig-cli": [
+    "*.json",
+    "source/*.js",
+    "source/*.html",
+    "source/js/**/*.js"
+  ],
+  "dependencies": {}
+}
