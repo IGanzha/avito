@@ -40,11 +40,6 @@ const objectInfo = fetch(`${objectInfoLink}/${id}`)
     objectInfo.classList.add('advert');
     objectInfo.innerHTML = advert;
     app.appendChild(objectInfo);
-
-    targetElement = document.querySelector('.photo-block');
-    console.log(targetElement);
-    targetElement.setAttribute('target', 'target');
-
   })
   .catch(err => console.error('Что-то пошло не так'));
 
